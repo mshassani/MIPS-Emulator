@@ -48,3 +48,16 @@ add_executable(
         src/control/control.cpp
         src/decoder/decoder.cpp
 )
+
+# Cpu Test
+add_executable(
+        cpu_test
+        test/cpu_test.cpp
+
+        src/cpu/cpu.cpp
+        src/memory/memory.cpp
+        src/registers/registers.cpp
+        src/decoder/decoder.cpp
+        src/control/control.cpp
+        src/alu/alu.cpp
+)
