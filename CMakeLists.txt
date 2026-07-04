@@ -9,6 +9,7 @@ include_directories(
         src/registers
         src/alu
         src/decoder
+        src/control
 )
 
 # Memory tests
@@ -36,5 +37,14 @@ add_executable(
 add_executable(
         decoder_test
         test/decoder_test.cpp
+        src/decoder/decoder.cpp
+)
+
+# Control Test
+add_executable(
+        control_test
+        test/control_test.cpp
+
+        src/control/control.cpp
         src/decoder/decoder.cpp
 )

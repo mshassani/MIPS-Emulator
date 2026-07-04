@@ -2,6 +2,8 @@
 #include <cstdint>
 
 enum class ALUOperation {
+    NOP,
+
     ADD,
     SUB,
 
