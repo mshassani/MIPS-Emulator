@@ -99,7 +99,7 @@ test/
 ### Phase 2
 
 - [x] Load/Store execution
-- [ ] Branch execution
+- [x] Branch execution
 - [ ] Jump execution
 - [ ] Program Loader
 
