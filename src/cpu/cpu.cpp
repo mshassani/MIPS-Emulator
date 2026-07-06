@@ -74,6 +74,11 @@ void CPU::step() {
     registers.setPc(pc + 4 + (static_cast<int32_t>(static_cast<int16_t>(decoded.immediate)) << 2));
   }
 
+  if (signals.jump) {
+    uint32_t target = ((pc + 4) & 0xF0000000) | (decoded.address << 2);
+    registers.setPc(target);
+  }
+
   //================================
   // 5- write back
   //================================
