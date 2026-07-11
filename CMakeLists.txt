@@ -10,6 +10,7 @@ include_directories(
         src/alu
         src/decoder
         src/control
+        src/assembler
 )
 
 # Memory tests
@@ -60,4 +61,9 @@ add_executable(
         src/decoder/decoder.cpp
         src/control/control.cpp
         src/alu/alu.cpp
+)
+
+add_executable(
+    assembler
+    src/assembler/assembler.cpp
 )
