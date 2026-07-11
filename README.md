@@ -143,4 +143,3 @@ The emulator loads the binary into memory and allows step-by-step execution.
 - Learn computer architecture by implementing hardware components in software.
 - Build a clean, modular and extensible MIPS32 emulator.
 - Simulate the execution of MIPS machine instructions.
-- Provide a solid foundation for future pipeline and cache implementations.
