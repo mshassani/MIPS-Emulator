@@ -61,6 +61,8 @@ This emulator uses a **Little-Endian** memory layout.
 
 All instructions and data are stored in memory using little-endian byte order. The assembler generates binary files in the same format, ensuring full compatibility between the assembler, loader, and emulator.
 
+---
+
 ## Testing
 
 Every module is tested independently before integration.
