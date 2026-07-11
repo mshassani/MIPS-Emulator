@@ -1,14 +1,14 @@
 # MIPS32 Emulator
 
-A modular implementation of a **MIPS32 Single-Cycle CPU Emulator** written in modern C++.
+A modular implementation of a **MIPS32 Single-Cycle CPU Emulator** written in modern **C++17**.
 
-The goal of this project is to build a complete MIPS32 processor from scratch by implementing every hardware component as an independent C++ module and then integrating them into a working CPU.
+The purpose of this project is to build a complete MIPS32 processor from scratch by implementing each hardware component independently and integrating them into a functional CPU. Every module is designed to closely resemble its hardware counterpart, making the project suitable for learning computer architecture as well as experimenting with CPU design.
 
-This project follows the architecture presented in standard Computer Architecture courses (Patterson & Hennessy).
+The implementation follows the architecture presented in **Computer Organization and Design** by **Patterson & Hennessy**.
 
 ---
 
-## Current Features
+# Features
 
 -  Byte-addressable Memory
 -  Register File (32 General Purpose Registers)
@@ -16,21 +16,24 @@ This project follows the architecture presented in standard Computer Architectur
 -  Arithmetic Logic Unit (ALU)
 -  Instruction Decoder
 -  Control Unit
--  Single-Cycle CPU Core
--  Unit Tests for every module
+-  Single-Cycle CPU Datapath
+-  Binary Program Loader
+-  Basic MIPS Assembler
+-  Interactive Command-Line Emulator
+-  Step-by-step Instruction Execution
+-  Unit Tests for Individual Components
 
 ---
 
-## Implemented Architecture
+# Implemented Architecture
 
-<img width="1217" height="699" alt="image" src="https://github.com/user-attachments/assets/c37c012e-ce92-435e-b1e9-a15ee79cd9d4" />
-
+<img width="1217" height="699" alt="Single Cycle Datapath" src="https://github.com/user-attachments/assets/c37c012e-ce92-435e-b1e9-a15ee79cd9d4" />
 
 ---
 
-## Implemented Instructions
+# Supported Instructions
 
-### R-Type
+## R-Type
 
 - ADD
 - SUB
@@ -43,45 +46,91 @@ This project follows the architecture presented in standard Computer Architectur
 - SRL
 - SRA
 
-### I-Type
+## I-Type
 
+- ADDI
 - LW
 - SW
 - BEQ
-- ADDI
 
-### J-Type
+## J-Type
 
 - J
 
 ---
 
-## Endianness
+# Endianness
 
-This emulator uses a **Little-Endian** memory layout.
+The emulator uses **Little-Endian** memory layout.
 
-All instructions and data are stored in memory using little-endian byte order. The assembler generates binary files in the same format, ensuring full compatibility between the assembler, loader, and emulator.
-
----
-
-## Testing
-
-Every module is tested independently before integration.
+Instructions and data are stored exactly as they would be in a little-endian MIPS system. The assembler generates binaries using the same format, ensuring full compatibility between the assembler, loader and emulator.
 
 ---
+
+# Testing
+
+Every hardware component is tested independently before being integrated into the CPU.
 
 Current test coverage includes:
 
-- Memory operations
+- Memory
 - Register File
-- ALU operations
-- Instruction decoding
-- Control signal generation
-- CPU integration (first MVP)
+- ALU
+- Decoder
+- Control Unit
+- CPU Integration
+- Program Execution
 
 ---
 
-## Technologies
+# Usage
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/mshassani/MIPS32-Emulator.git
+cd MIPS32-Emulator
+```
+
+---
+
+## 2. Build
+
+```bash
+mkdir build
+cd build
+
+cmake ..
+cmake --build . --config Release
+```
+
+---
+
+## 3. Assemble a MIPS Program
+
+```bash
+./assembler example.asm
+```
+
+This generates:
+
+```
+output.bin
+```
+
+---
+
+## 4. Run the Emulator
+
+```bash
+./Emulator output.bin
+```
+
+The emulator loads the binary into memory and allows step-by-step execution.
+
+---
+
+# Technologies
 
 - C++17
 - CMake
@@ -89,11 +138,9 @@ Current test coverage includes:
 
 ---
 
-## Goals
+# Project Goals
 
-- Learn computer architecture through implementation.
-- Build a clean, modular, and extensible emulator.
-- Simulate the execution of MIPS32 machine instructions.
+- Learn computer architecture by implementing hardware components in software.
+- Build a clean, modular and extensible MIPS32 emulator.
+- Simulate the execution of MIPS machine instructions.
 - Provide a solid foundation for future pipeline and cache implementations.
-
-
