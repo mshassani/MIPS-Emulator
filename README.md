@@ -48,7 +48,8 @@ This project follows the architecture presented in standard Computer Architectur
 - LW
 - SW
 - BEQ
-
+- ADDI
+- شیی
 ### J-Type
 
 - J
