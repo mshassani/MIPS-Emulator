@@ -67,3 +67,16 @@ add_executable(
     assembler
     src/assembler/assembler.cpp
 )
+
+add_executable(
+    Emulator
+    src/main.cpp
+
+    src/cpu/cpu.cpp
+    src/memory/memory.cpp
+    src/registers/registers.cpp
+    src/decoder/decoder.cpp
+    src/control/control.cpp
+    src/alu/alu.cpp
+    src/loader/loader.cpp
+)

@@ -8,7 +8,9 @@ void CPU::loadInstruction(uint32_t address, uint32_t instruction) {
 void CPU::setRegister(uint8_t reg, uint32_t value) {
   registers.write(reg, value);
 }
-
+Memory& CPU::memoryInstance() {
+    return memory;
+}
 uint32_t CPU::getRegister(uint8_t reg) const { return registers.read(reg); }
 
 uint32_t CPU::getPc() const { return registers.getPc(); }

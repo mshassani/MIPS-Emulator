@@ -173,6 +173,27 @@ int main() {
     std::cout << "[PASS] SW\n";
 
     //=======================================================
+    // Test 8.5: addi
+    //=======================================================
+
+    cpu.reset();
+
+    cpu.loadInstruction(0, 0x20080005); 
+    cpu.loadInstruction(4, 0x2009000A); 
+    cpu.loadInstruction(8, 0x01095020); 
+
+    cpu.step();
+    cpu.step();
+    cpu.step();
+
+    assert(cpu.getRegister(8) == 5);
+    assert(cpu.getRegister(9) == 10);
+    assert(cpu.getRegister(10) == 15);
+
+    std::cout << "[PASS] ADDI\n";
+
+
+    //=======================================================
     // Test 9: BEQ
     //=======================================================
 

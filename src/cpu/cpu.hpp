@@ -18,6 +18,8 @@ class CPU {
         void loadInstruction(uint32_t address, uint32_t instruction);
         void setRegister(uint8_t reg, uint32_t value);
 
+        Memory& memoryInstance();
+
         uint32_t getRegister(uint8_t reg) const;
         uint32_t getPc() const;
         uint32_t getMemory(uint32_t address);

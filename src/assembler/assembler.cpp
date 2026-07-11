@@ -16,11 +16,17 @@ uint8_t regNum(string r) {
         {"$t8",24},{"$t9",25},{"$k0",26},{"$k1",27},{"$gp",28},{"$sp",29},
         {"$fp",30},{"$ra",31}
     };
-    return reg[r];
+
+    auto it = reg.find(r);
+
+    if (it == reg.end())
+        throw runtime_error("Unknown register: " + r);
+
+    return it->second;
 }
 
 string cleanLine(string line) {
-    line.erase(remove(line.begin(), line.end(), ','), line.end());
+    replace(line.begin(), line.end(), ',', ' ');
     replace(line.begin(), line.end(), '\t', ' ');
 
     size_t start = line.find_first_not_of(' ');
@@ -43,6 +49,11 @@ vector<string> split(string cline) {
 
 void assemble(string filename) {
     ifstream file(filename);
+
+    if (!file.is_open()) {
+        throw runtime_error("Cannot open file: " + filename);
+    }
+
     string line;
     vector<string> lines;
     vector<uint32_t> code;
@@ -74,6 +85,11 @@ void assemble(string filename) {
 
     for (const string& line : lines) {
         vector<string> parts = split(line);
+
+        if (parts.empty()) {
+            continue;
+        }
+
         string op = parts[0];
         uint32_t instr = 0;
 
@@ -99,6 +115,14 @@ void assemble(string filename) {
             uint8_t opcode = (op == "lw") ? 35 : 43;
 
             instr = (opcode << 26) | (rs << 21) | (rt << 16) | (offset & 0xFFFF);
+        }
+
+        else if (op == "addi") {
+            uint8_t rt = regNum(parts[1]);
+            uint8_t rs = regNum(parts[2]);
+            int16_t imm = stoi(parts[3]);
+
+            instr = (0x08 << 26) | (rs << 21) | (rt << 16) | (static_cast<uint16_t>(imm));
         }
 
         else if (op == "beq" || op == "bne") {
@@ -133,5 +157,16 @@ void assemble(string filename) {
 
 
 int main(int argc, char* argv[]) {
-    assemble(argv[1]);
+    if (argc != 2) {
+        cerr << "Usage: assembler <program.asm>\n";
+        return 1;
+    }
+
+    try {
+        assemble(argv[1]);
+    }
+    catch (const exception& e) {
+        cerr << "Assembler Error: " << e.what() << '\n';
+        return 1;
+    }
 }

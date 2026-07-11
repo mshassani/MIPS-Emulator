@@ -95,6 +95,22 @@ ControlSignals ControlUnit::generate(const DecodedInstruction &instruction) cons
 
             signals.aluOperation = ALUOperation::NOP;
             break;
+
+        case 0x08:
+            signals.regWrite = true;
+            signals.memRead = false;
+            signals.memWrite = false;
+
+            signals.memToReg = false;
+            signals.regDst = false;
+            signals.aluSrc = true;
+
+            signals.branch = false;
+            signals.jump = false;
+
+            signals.aluOperation = ALUOperation::ADD;
+            break;
+
         default:
             signals.regWrite = false;
             signals.memRead = false;
